@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: black;
+    color: white;
+    font-size: 900;
+}
+
+form{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: space-between;
+    flex-direction:column;
+    border: 1px solid yellow;
+}
+.div-num{
+    display: flex;
+    border: 2px solid tomato;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    height: 40%;
+    width: 40%;
+}
+
+.num{
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid tomato;
+    flex-direction: column;
+    height: 3rem;
+    width: 15rem;
+    margin: 1rem;
+    
+}
+
+#numUno{
+    
+    background-color: white;
+    color: black;
+    
+}
+
+#numDos{
+    background-color: white;
+    color: black;
+}
+
+.div-btn{
+    display: flex;
+    border: 1px solid yellow;
+    width: 40%;
+    height: 10%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+
+}
+.btn{
+    display: flex;
+    width: 80%;
+    height: 60%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+}

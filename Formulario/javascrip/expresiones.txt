@@ -1,0 +1,19 @@
+Expreciones Regulares
+
+^ = iniciar la exprecion Regular
+$ = finaliza la exprecion Regular
+[] = colocar los caracteres validos
+{} = tamaño de la informacion 
+
+//Ejemplo
+//Corcheres
+Dentro se expecifica que rango y tipo se va a manejar
+[0-9]
+[a-zA-Z]
+[a-c]
+
+//Llaves
+Dentro va el tamaño que se va a poder manejar(rango) 
+{5}
+{5,10}
+{5,}

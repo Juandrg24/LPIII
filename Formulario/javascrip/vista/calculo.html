@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculo</title>
+
+    <!--Importaciones-->
+    <script type="text/javascript" src="../js/control.js"></script>
+    <link rel="stylesheet" href="../vista/style.css">
+</head>
+
+<body>
+    <!--Formulario-->
+    <form name="form1" id="form1" >
+        <!--Creacion tabla-->
+        <table border="1" align="center" width="500">
+            <!-- Titulo-->
+            <tr >
+                <td colspan="2" align="center">Operacion Matematica</td>
+            </tr>
+
+            <!--Valores-->
+            <tr>
+                <td align="center" >Primer Valor</td>
+                <td> <input type="text" name="valor1" id="valor1" size="20" maxlength="5"></td>
+            </tr>
+
+            <tr>
+                <td align="center" >Segundo Valor</td>
+                <td><input type="text" name="valor2" id="valor2" size="20" maxlength="5"></td>
+            </tr>
+
+            <!--Resulta dos-->
+            <tr>
+                <td  align="center" >Resultado</td>
+                <td><input type="text" name="resultado" id="resultado" size="20" readonly></td>
+            </tr>
+
+            <!--Btns-->
+            <tr>
+                <td colspan="2" align="center" >
+                    <input type="button" value="Sumar" onclick="suma()">
+                    <input type="button" value="Restar" onclick="resta()">
+                    <input type="button" value="Multiplicar" onclick="multiplica()">
+                    <input type="button" value="Dividr" onclick="divide()">
+                    <input type="reset" value="Limpiar">
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+</body>
+
+</html>
