@@ -1,0 +1,44 @@
+<--Spring--> 
+¿Que es Spring?
+Es un ambiente de desarrollo 
+
+
+--Maven--
+
+Es un gestion/administrador de proyectos de software, perimite 
+
+
+----Definiciones----
+
+- Inyeccion de Dependencias = Se ebcarga de llamar los metodos segun los requiera o necesite 
+
+- XML = Lenguaje de marcas Extensibles
+
+- Anotaciones
+
+- Programacion por Capas = Clasificacion de mi aplicactivo segun  
+
+    MVC :  
+        - Modelo = Parte abstracta 
+
+        - Vista = Lleva todo lo que el usuario va a ver 
+
+        - Controlador o Control = Parte logica  
+
+- Spring Boot = Acelerador y simplificacion del desarrollo de aplicacion
+
+- Thymeleaf = Administrador de plantillas de trabajo. Se utiliza para el diseño y mostrar resultados
+
+
+-Programacion del lado del cliente
+
+-Programcion del lado del servidor 
+
+Permiten interactuar con base de datos
+
+    - ASP
+    - JPS
+    - PHP
+        
+
+
