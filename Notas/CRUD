@@ -17,6 +17,10 @@ xmlns   =
 
 ns      =   name space
 
+DAO     =   Data Access Object //Patron de diseño 
+
+JPA     =   Java 
+
 fechaMatricula  =   fecha_matricula //Este campo es mejor tabajarlo todo en minuscula
 
 
@@ -37,14 +41,52 @@ Pasos
         spring.datasource.password=
 
 5. Creamos el archivo Controller.java en la carpeta del main en el primer paquete
-    Importamos el Controller y el GetMapping
-    Creamos un metodo que retornara el archivo html
+   - Importamos el Controller y el @GetMapping
+    -Creamos un metodo que retornara el archivo html
 
 6. En la carpeta Templates 
-    Creamos el archivo html con el mismo nombre que retornamos en el archivo Controller(GetMapping)
+    -Creamos el archivo html con el mismo nombre que retornamos en el archivo Controller(GetMapping)
     Se le cambia el lenguaje y se le agrega el xmls con la direccion de thymeleaf <html lang="es" xmlns="https://www.thymeleaf.org">
 
 7. Creamos lo que necesitamos en el html
+8. Creamos en la carpeta donde esta el controles un archivo .java 
+    -Definimos las variables para crear un contructor y generamos los gettes an setters
+    -Agregamos @Entity
+    -@Entity //trabajar con base de datos 
+    -@Table(name="estudaintes") /Especificar que es con esa tabla 
+    -@Id // Es para buscar por el Id
+
+9.Creamos en la carpeta del controller un archivo interface(manipula una herencia para tomar varios elementos de una clase) .java
+
+10.Creamos otro archivo interface .java
+    -Agregamos a la clase un extends  JpaRepository<Estudiante, Integer>
+    -Agregamos @Repository
+
+11.Creamos otro archivo .java en la misma carpeta
+    -Agregamos @Service
+    Implmentamos los metodos 
+    
+    -Agregamos @Autowired
+    private EstudianteDAO estudianteDAO; // Se encarga de toda la manipulacion de los setters
+
+    -Agregamos @Transactional //Se encarga de las transacciones de informacion(guardar, eliminar, modificar)
+    
+    -Utilizamos  //Metodo save inserta datos 
+        estudianteDAO.save(estudiante);
+
+12.Vamos al controller 
+    -Agregamos @SessionAttributes //Darle seguridad con que vamos a iniciar Ej: @SessionAttributes ("estudiante")
+    -Agregamos dentro de la class 
+    @Autowired
+    -Agregamos a la funcion estudainte insertar (Model model)
+
+    
+
+
+
+
+
+
 
 
 
