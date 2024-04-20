@@ -1,5 +1,8 @@
 package com.example.matricula;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +35,17 @@ public class EstudianteController {
 
         EstudianteServicio.guardar(estudiante);
         status.setComplete();
-        return "/estudianteInsertar";
+        return "redirect:/estudianteListar";//Cambia ubicacion a la que se quiere 
 
     }
+
+    @GetMapping("/estudianteListar")
+    public String estudiante(Model model) {
+        List<Estudiante> estudiante = EstudianteServicio.listado();
+        model.addAttribute("estudiante", estudiante);
+        model.addAttribute("mensaje", "Listado");
+
+        return "/estudianteListar";
+    }
+
 }

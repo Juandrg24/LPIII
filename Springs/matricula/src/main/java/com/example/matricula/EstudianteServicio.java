@@ -1,7 +1,10 @@
 package com.example.matricula;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import jakarta.transaction.Transactional;
 
@@ -13,8 +16,8 @@ public class EstudianteServicio implements EstudianteInterface {
     @Autowired
     private EstudianteDAO estudianteDAO;
 
-    @Override
 
+    @Override
     // Se encarga de las transacciones de informacion(guardar, eliminar, modificar)
     @Transactional
     public void guardar(Estudiante estudiante) {
@@ -23,5 +26,15 @@ public class EstudianteServicio implements EstudianteInterface {
         estudianteDAO.save(estudiante);
 
     }
+
+    @Override
+    @Transactional
+    public List<Estudiante> listado() {
+       
+       return estudianteDAO.findAll();
+    }
+
+
+    
 
 }

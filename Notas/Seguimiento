@@ -1,0 +1,24 @@
+Crear una bd Hospital
+tabla       pacientes
+campos      
+id  Autonumerico
+cedula char
+nombre char
+direccion   char
+celular char
+diagnostico char
+
+Crear proyecto en spring.io
+Agregar dependencias
+Crear controller para llamado insertar 
+
+Crear un Formulario para insertar
+
+Orden de las Clases
+
+paciente        getters/setters
+pacienteInterface
+pacienteDAO
+pacienteServicio
+paciente
+pacienteController implementacion de los metodos
