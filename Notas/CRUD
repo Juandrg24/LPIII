@@ -40,7 +40,7 @@ Pasos
         # password de mysql
         spring.datasource.password=
 
-5. Creamos el archivo Controller.java en la carpeta del main en el primer paquete
+5. Creamos el archivo (Controller)Controller.java en la carpeta del main en el primer paquete
    - Importamos el Controller y el @GetMapping
     -Creamos un metodo que retornara el archivo html
 
@@ -49,26 +49,30 @@ Pasos
     Se le cambia el lenguaje y se le agrega el xmls con la direccion de thymeleaf <html lang="es" xmlns="https://www.thymeleaf.org">
 
 7. Creamos lo que necesitamos en el html
-8. Creamos en la carpeta donde esta el controles un archivo .java 
+8. Creamos en la carpeta donde esta el Controller un(Contructor) archivo .java con los getters and setters
     -Definimos las variables para crear un contructor y generamos los gettes an setters
     -Agregamos @Entity
     -@Entity //trabajar con base de datos 
-    -@Table(name="estudaintes") /Especificar que es con esa tabla 
+    -@Table(name="nombre de la tabla a conectar") /Especificar que es con esa tabla 
     -@Id // Es para buscar por el Id
 
-9.Creamos en la carpeta del controller un archivo interface(manipula una herencia para tomar varios elementos de una clase) .java
+9.Creamos en la carpeta del controller un archivo (Interface)interface(manipula una herencia para tomar varios elementos de una clase) .java
+    creamos un metodo llamado guardar(Dentro le enviamos el contructor que reamos anteriormente)
 
-10.Creamos otro archivo interface .java
+
+10.Creamos otro archivo interface (DAO).java
     -Agregamos a la clase un extends  JpaRepository<Estudiante, Integer>
     -Agregamos @Repository
 
-11.Creamos otro archivo .java en la misma carpeta
+11.Creamos otro (Servicio)archivo .java en la misma carpeta
     -Agregamos @Service
-    Implmentamos los metodos 
+    -Implmentamos los metodos. Agregando a la clase principal el implements
     
+    Dentro de la clase
     -Agregamos @Autowired
     private EstudianteDAO estudianteDAO; // Se encarga de toda la manipulacion de los setters
 
+    En el Primer Override(Save)
     -Agregamos @Transactional //Se encarga de las transacciones de informacion(guardar, eliminar, modificar)
     
     -Utilizamos  //Metodo save inserta datos 
@@ -76,9 +80,23 @@ Pasos
 
 12.Vamos al controller 
     -Agregamos @SessionAttributes //Darle seguridad con que vamos a iniciar Ej: @SessionAttributes ("estudiante")
-    -Agregamos dentro de la class 
+    -Agregamos dentro de la clase
     @Autowired
-    -Agregamos a la funcion estudainte insertar (Model model)
+    -Agregamos a la funcion estudainte insertar los parametros (Model model)
+    -Iniciamos una instacia de nuestra clase con los geters and Setters
+    -Creamos los model.addAtribute 
+    -Creamos el paso de informacion
+        -Agregamos un @PostMapping
+        -Creamos un metodo publico String llamdo insertar 
+        Le enviamos como atributo esto (@ModelAttribute(name = "estudiante") Estudiante estudiante, Model model,
+            SessionStatus status)
+        -Hacemos las importaciones necesarias
+        -retornamos "redirect:/estudianteListar";//Cambia ubicacion a la que se quiere(Esto es cuando se tiene un listar o alguna ventana para mostrar) 
+
+    -Revisar el html en el form tener lo siguiente 
+      
+        <form method="post" class="row g-3" th:action="@{/insertar}" th:object="${paciente}" >
+
 
     
 
