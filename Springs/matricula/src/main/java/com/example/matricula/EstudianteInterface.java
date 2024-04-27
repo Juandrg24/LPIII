@@ -6,8 +6,7 @@ public interface EstudianteInterface {
 
 	public void guardar(Estudiante estudiante);
 	public List<Estudiante> listado();
-
-	// Modificar
-	// Eliminar
+	public Estudiante consultar(Integer id);
+	public void eliminar(Integer id);
 
 }

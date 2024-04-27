@@ -22,3 +22,28 @@ pacienteDAO
 pacienteServicio
 paciente
 pacienteController implementacion de los metodos
+
+
+seguimiento 
+
+nombre del proyecto       "Su nombre" y de la bd
+
+tabla                      notas
+campos   
+
+
+            id           int(5)
+            cedula       char(10)
+            nombre       chat(40)
+            nota1        float
+            nota2        float
+            nota3        float          hasta aca en el Formulario
+
+
+            definitiva   float           se debe calcular por medio de un get and set o por un trigger
+aplicar
+    guardar
+    listar
+    
+
+            

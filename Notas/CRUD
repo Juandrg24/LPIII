@@ -1,110 +1,170 @@
 CRUD
 
-C  Crear(Insertar)
-R  leer(Consultar)
-U  Actualizar
-D  Eliminar
+C Crear(Insertar)
+R leer(Consultar)
+U Actualizar
+D Eliminar
 
-
-Base de Datos 
+Base de Datos
 Creacion de tablas mientras se trabaje con un entorno se recomienda trabajar en plural
 
 Char asigna un espacio estatico
 
-JDBC    =conectividad de bases de datos abiertas con java
+JDBC =conectividad de bases de datos abiertas con java
 
-xmlns   =
+xmlns =
 
-ns      =   name space
+ns = name space
 
-DAO     =   Data Access Object //Patron de diseño 
+DAO = Data Access Object //Patron de diseño
 
-JPA     =   Java 
+JPA = Java
 
-fechaMatricula  =   fecha_matricula //Este campo es mejor tabajarlo todo en minuscula
+fechaMatricula = fecha_matricula //Este campo es mejor tabajarlo todo en minuscula
 
+Pasos
 
-Pasos 
-1. Creamos la base de datos
+1.  Creamos la base de datos
     Tablas
-2. Creamos el archivo Spring con las dependencias 
-    
-3. Lo importamos 
+2.  Creamos el archivo Spring con las dependencias
+3.  Lo importamos
 
-4. Vamos a resource 
-    Agregamos al arcrivo application un 
-        # Conexion a la base de datos 
-        spring.datesource.url=jdbc:mysql://localhost/matricula?serverTimeZone=America/Bogota
-        # Usuario de mysql
-        spring.datasource.username=root
-        # password de mysql
-        spring.datasource.password=
+4.  Vamos a resource
+    Agregamos al arcrivo application un # Conexion a la base de datos
+    spring.datesource.url=jdbc:mysql://localhost/matricula?serverTimeZone=America/Bogota # Usuario de mysql
+    spring.datasource.username=root # password de mysql
+    spring.datasource.password=
 
-5. Creamos el archivo (Controller)Controller.java en la carpeta del main en el primer paquete
-   - Importamos el Controller y el @GetMapping
-    -Creamos un metodo que retornara el archivo html
+5.  Creamos el archivo (Controller)Controller.java en la carpeta del main en el primer paquete
 
-6. En la carpeta Templates 
+    - Importamos el Controller y el @GetMapping
+      -Creamos un metodo que retornara el archivo html
+
+6.  En la carpeta Templates
     -Creamos el archivo html con el mismo nombre que retornamos en el archivo Controller(GetMapping)
     Se le cambia el lenguaje y se le agrega el xmls con la direccion de thymeleaf <html lang="es" xmlns="https://www.thymeleaf.org">
 
-7. Creamos lo que necesitamos en el html
-8. Creamos en la carpeta donde esta el Controller un(Contructor) archivo .java con los getters and setters
+7.  Creamos lo que necesitamos en el html
+8.  Creamos en la carpeta donde esta el Controller un(Contructor) archivo .java con los getters and setters
     -Definimos las variables para crear un contructor y generamos los gettes an setters
     -Agregamos @Entity
-    -@Entity //trabajar con base de datos 
-    -@Table(name="nombre de la tabla a conectar") /Especificar que es con esa tabla 
+    -@Entity //trabajar con base de datos
+    -@Table(name="nombre de la tabla a conectar") /Especificar que es con esa tabla
     -@Id // Es para buscar por el Id
 
-9.Creamos en la carpeta del controller un archivo (Interface)interface(manipula una herencia para tomar varios elementos de una clase) .java
+9.  Creamos en la carpeta del controller un archivo (Interface)interface(manipula una herencia para tomar varios elementos de una clase) .java
     creamos un metodo llamado guardar(Dentro le enviamos el contructor que reamos anteriormente)
 
-
-10.Creamos otro archivo interface (DAO).java
-    -Agregamos a la clase un extends  JpaRepository<Estudiante, Integer>
+10. Creamos otro archivo interface (DAO).java
+    -Agregamos a la clase un extends JpaRepository<Estudiante, Integer>
     -Agregamos @Repository
 
-11.Creamos otro (Servicio)archivo .java en la misma carpeta
+11. Creamos otro (Servicio)archivo .java en la misma carpeta
     -Agregamos @Service
     -Implmentamos los metodos. Agregando a la clase principal el implements
-    
+
     Dentro de la clase
     -Agregamos @Autowired
     private EstudianteDAO estudianteDAO; // Se encarga de toda la manipulacion de los setters
 
     En el Primer Override(Save)
     -Agregamos @Transactional //Se encarga de las transacciones de informacion(guardar, eliminar, modificar)
-    
-    -Utilizamos  //Metodo save inserta datos 
-        estudianteDAO.save(estudiante);
 
-12.Vamos al controller 
+    -Utilizamos //Metodo save inserta datos
+    estudianteDAO.save(estudiante);
+
+12. Vamos al controller
     -Agregamos @SessionAttributes //Darle seguridad con que vamos a iniciar Ej: @SessionAttributes ("estudiante")
     -Agregamos dentro de la clase
     @Autowired
     -Agregamos a la funcion estudainte insertar los parametros (Model model)
     -Iniciamos una instacia de nuestra clase con los geters and Setters
-    -Creamos los model.addAtribute 
+    -Creamos los model.addAtribute
     -Creamos el paso de informacion
-        -Agregamos un @PostMapping
-        -Creamos un metodo publico String llamdo insertar 
-        Le enviamos como atributo esto (@ModelAttribute(name = "estudiante") Estudiante estudiante, Model model,
-            SessionStatus status)
-        -Hacemos las importaciones necesarias
-        -retornamos "redirect:/estudianteListar";//Cambia ubicacion a la que se quiere(Esto es cuando se tiene un listar o alguna ventana para mostrar) 
+    -Agregamos un @PostMapping
+    -Creamos un metodo publico String llamdo insertar
+    Le enviamos como atributo esto (@ModelAttribute(name = "estudiante") Estudiante estudiante, Model model,
+    SessionStatus status)
+    -Hacemos las importaciones necesarias
+    -retornamos "redirect:/estudianteListar";//Cambia ubicacion a la que se quiere(Esto es cuando se tiene un listar o alguna ventana para mostrar)
 
-    -Revisar el html en el form tener lo siguiente 
-      
+    -Revisar el html en el form tener lo siguiente
+
         <form method="post" class="row g-3" th:action="@{/insertar}" th:object="${paciente}" >
 
+13. Se agrega al archivo de EstudianteInterface el public -List<Estudiante> listado(); Este tiene el listado de la base de datos con el nombre Estudiante
 
-    
+14. En el archivo EstudianteServicio se crea el metodo de listar
+    -Se agrega El @Transactional
+    -return estudianteDAO.findAll(); Retorna la lista de estudiantes de la base de datos
+
+15. Creamos el archivo html con el mismo nombre que retornamos en el archivo Controller(GetMapping)
+    -Se le cambia el lenguaje y se le agrega el xmls con la direccion de thymeleaf <html lang="es" xmlns="https://www.thymeleaf.org">
+    -En el body creamos el formulario, este tiene dentro de un tr una tabla cada uno de los campos que necesitamos esta dentro de un td.
+    luego podemos encontrar en otro tr se crea un alias en este caso es est que remplaza la palabra estudante para asi poder llmarlo en otro sitio de forma mas facil, luego en cada uno de los campos le asignamos donde sera guardado en la base de datos, 
+    <td class="text-center" th:text="${est.carnet}">&nbsp;</td> 
+    esto seria la direccion genericamente es th:text="${est.nombre del campo}". &nbsp; este termino lo utlizamos para hacer que el campo este vacio.
+    lo siguiente en realizar son los botos en estos traemos funciones de otros archivos entre estos tenemos en boton nuevo
+     <a th:href="@{/estudianteInsertar}" class="btn btn-danger">Nuevo</a>
+    este codigo lo agregamos al inicio, ya es por preferencia del formulario o estetica, ya que trabajamos en cascada,  este nos devuelve el formulario limpio para agregar un nuevo usuario
 
 
+16. En el archivo del Controller se crea el metodo de listar
+    @GetMapping("/estudianteListar")
+    public String estudiante(Model model) {
+    List<Estudiante> estudiante = EstudianteServicio.listado();
+    model.addAttribute("estudiante", estudiante);
+    model.addAttribute("mensaje", "Listado");
 
+        //Retornamos a la lista vacia del formulario HTML de listar
+        return "/estudianteListar";
 
+    }
 
+FALTA EL LISTAR
 
+20. Agregamos en estudiante Interface los nuevos metodos -public Estudiante consultar(Integer id);
+    -public void eliminar(Integer id);
+21. Vamos a estudiante servicio y le damos a la clase en el Controller para agregar los metodos que se construyo con anteriodad
 
+    -En el metodo de consulta agregamos el  
+    -@Transactional
+    -retornamos el archivo Dao .findById(id).orElse(null);
 
+    -Agregamos en el metodo eliminar
+    -@Transactional
+    -estudianteDAO.deleteById(id);
 
+22. En el Controller Se agregan los metodos de consultar y eliminar
+    Consultar
+    -Les agregamos los @GetMapping("/conturtar/{id}") NOTA ESEGURARSE DE QUE EL ID VA EN {} LLAVES - En el metodo de consultar se le envia el siguiente parametro (@PathVariable(name = "id") Integer id, Model model) - Dentro del metodo se agrega
+    -Instancia una la clase de Estudainte = se le envia la informacion la cual se agrega a la interface para asi compararla con la base de datos
+    -Estudiante estudiante = EstudianteServicio.consultar(id);
+
+            model.addAttribute("estudiante", estudiante);
+            model.addAttribute("mensaje", "Consultar");
+
+            return "redirect:/estudianteListar";
+
+    Eliminar
+    -Le agregamos los @GetMapping("/eliminar/{id}") NOTA ESEGURARSE DE QUE EL ID VA EN {} LLAVES
+    -En el metodo de eliminar se le envia el siguiente parametro (@PathVariable(name = "id") Integer id, Model model)
+    -Dentro del metodo agregamos
+    Estudiante estudiante = EstudianteServicio.consultar(id);
+    EstudianteServicio.eliminar(id);
+    return "redirect:/estudianteListar";
+
+    Modificar
+    -Le Agregamos el @GetMapping("/modificar/{id}")
+    Se realiza el mismo proceso de consultar
+    -Estudiante estudiante = EstudianteServicio.consultar(id);
+    -model.addAttribute("estudiante", estudiante);
+    -model.addAttribute("mensaje", "Modificar");
+
+        -Se lleva la informacion de la ID a los campos del formulario donde se podra modificar la infomacion y guardar
+            -return "estudianteInsertar";
+
+23. En el archivo de HTML de Listar se crea dentro de el campo de botnes se agrego el boton de eliminar y de modificar
+    Se crea uun Link con forma de boton Eliminar -<a th:href="@{/eliminar/} + ${est.id}" class="btn btn-danger  btn-sm" onclick="return confirm('¿ Estas Seguro de Eliminar ?')">Eliminar</a>
+
+    Se crea uun Link con forma de boton Modificar -<a th:href="@{/modificar/} + ${est.id}" class="btn btn-danger  btn-sm">Modificar</a>
