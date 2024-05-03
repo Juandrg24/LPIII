@@ -31,7 +31,7 @@ Pasos
 
 4.  Vamos a resource
     Agregamos al arcrivo application un # Conexion a la base de datos
-    spring.datesource.url=jdbc:mysql://localhost/matricula?serverTimeZone=America/Bogota # Usuario de mysql
+    spring.datesource.url=jdbc:mysql://localhost/nombredelaBD?serverTimeZone=America/Bogota # Usuario de mysql
     spring.datasource.username=root # password de mysql
     spring.datasource.password=
 
