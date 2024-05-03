@@ -1,5 +1,7 @@
 package com.juanrubio.Notas;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +18,12 @@ public class NotaServicio implements NotaInterface {
     public void guardar(Nota nota) {
         notaDAO.save(nota);
     }
+
+    @Override
+    @Transactional
+    public List<Nota> ListadoNotas() {
+        return notaDAO.findAll();
+    }
+    
 
 }

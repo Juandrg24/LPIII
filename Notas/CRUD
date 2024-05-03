@@ -92,6 +92,8 @@ Pasos
 
         <form method="post" class="row g-3" th:action="@{/insertar}" th:object="${paciente}" >
 
+        Tambien recordar agregarle el th:field="*{}" a los inputs de los datos
+
 13. Se agrega al archivo de EstudianteInterface el public -List<Estudiante> listado(); Este tiene el listado de la base de datos con el nombre Estudiante
 
 14. En el archivo EstudianteServicio se crea el metodo de listar
@@ -121,7 +123,6 @@ Pasos
 
     }
 
-FALTA EL LISTAR
 
 20. Agregamos en estudiante Interface los nuevos metodos -public Estudiante consultar(Integer id);
     -public void eliminar(Integer id);

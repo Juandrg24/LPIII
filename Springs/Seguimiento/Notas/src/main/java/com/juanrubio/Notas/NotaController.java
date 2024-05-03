@@ -1,5 +1,7 @@
 package com.juanrubio.Notas;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +30,16 @@ public class NotaController {
     public String Insertar(@ModelAttribute(name = "nota") Nota nota, Model model, SessionStatus status) {
         NotaServicio.guardar(nota);
         status.setComplete();
-        return "/insertar";
+        return "redirect:/notasListar";
     }
+
+    @GetMapping("/notasListar")
+    public String notas(Model model){
+        List<Nota> nota= NotaServicio.ListadoNotas();
+        model.addAttribute("nota", nota);
+        model.addAttribute("mensaje", "Listado Notas");
+        return "/notasListar";
+    }
+
 
 }

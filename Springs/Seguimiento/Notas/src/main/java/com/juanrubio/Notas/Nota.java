@@ -18,9 +18,7 @@ public class Nota {
     private float nota3;
     private float definitiva;
 
-    public Nota() {
-
-    }
+    // public Nota() {}
 
     public int getId() {
         return id;
@@ -78,5 +76,10 @@ public class Nota {
         this.definitiva = definitiva;
     }
 
-   
+    @Override
+    public String toString() {
+        return "Nota [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", nota1=" + nota1 + ", nota2=" + nota2
+                + ", nota3=" + nota3 + ", definitiva=" + definitiva + "]";
+    }
+
 }
