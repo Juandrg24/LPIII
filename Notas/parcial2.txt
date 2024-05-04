@@ -1,0 +1,40 @@
+parcial 2
+
+BD          Su Nombre
+
+Tabla       turista
+campo
+
+id
+cedula
+Nombre
+fechaingreso
+fechasalida
+diashospedaje
+valordia
+valortotal
+
+Aplicar
+    crud completo
+    validacion del formulario
+    bootstrap
+    nombre del proyecto (su nombre)
+
+fecha de entrega
+    hasta el domingo 12 de mayo
+
+    cesar.jaramillo@uniremington.edu.co
+
+
+
+
+CREATE TABLE turistas (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     cedula CHAR(10) NOT NULL,
+    ->     nombre CHAR(80) NOT NULL,
+    ->     fechaingreso DATE NOT NULL,
+    ->     fechasalida DATE NOT NULL,
+    ->     diashospedaje INT(5) NOT NULL,
+    ->     valordia INT(10) NOT NULL,
+    ->     valortotal INT(20) NOT NULL
+    -> );
