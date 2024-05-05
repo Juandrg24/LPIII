@@ -18,6 +18,8 @@ public class Turista {
     private int valordia;
     private int valortotal;
 
+    public Turista(){}
+
     public int getId() {
         return id;
     }
@@ -73,7 +75,9 @@ public class Turista {
                 + ", fechasalida=" + fechasalida + ", diashospedaje=" + diashospedaje + ", valordia=" + valordia
                 + ", valortotal=" + valortotal + "]";
     }
-    
+    public void valTotal(){
+       valortotal=valordia*diashospedaje;
+    }
 
 
 }
