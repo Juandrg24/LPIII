@@ -18,7 +18,7 @@ public class CategoriaController {
     @Autowired
     private CategoriaInterface CategoriaServicio;
 
-    @GetMapping(value = "categoriaInsertar")
+    @GetMapping(value = "/categoriaInsertar")
     public String categoriaInsertar(Model model) {
         Categoria categoria = new Categoria();
         model.addAttribute("categoria", categoria);
@@ -49,12 +49,14 @@ public class CategoriaController {
         model.addAttribute("mensaje", "consultar");
         return "redirect:/categoriaListar";
     }
+
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable(name="id")Integer id, Model model){
         Categoria categoria = CategoriaServicio.consultar(id);
         CategoriaServicio.eliminar(id);
         return "redirect:/categoriaListar";
     }
+    
     @GetMapping("/modificar/{id}")
     public String modificar(@PathVariable(name="id")Integer id, Model model){
         Categoria categoria = CategoriaServicio.consultar(id);

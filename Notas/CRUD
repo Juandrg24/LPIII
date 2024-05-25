@@ -103,13 +103,12 @@ Pasos
 15. Creamos el archivo html con el mismo nombre que retornamos en el archivo Controller(GetMapping)
     -Se le cambia el lenguaje y se le agrega el xmls con la direccion de thymeleaf <html lang="es" xmlns="https://www.thymeleaf.org">
     -En el body creamos el formulario, este tiene dentro de un tr una tabla cada uno de los campos que necesitamos esta dentro de un td.
-    luego podemos encontrar en otro tr se crea un alias en este caso es est que remplaza la palabra estudante para asi poder llmarlo en otro sitio de forma mas facil, luego en cada uno de los campos le asignamos donde sera guardado en la base de datos, 
+    luego podemos encontrar en otro tr se crea un alias en este caso es est que remplaza la palabra estudante para asi poder llmarlo en otro sitio de forma mas facil, luego en cada uno de los campos le asignamos donde sera guardado en la base de datos,
     <td class="text-center" th:text="${est.carnet}">&nbsp;</td> 
     esto seria la direccion genericamente es th:text="${est.nombre del campo}". &nbsp; este termino lo utlizamos para hacer que el campo este vacio.
     lo siguiente en realizar son los botos en estos traemos funciones de otros archivos entre estos tenemos en boton nuevo
      <a th:href="@{/estudianteInsertar}" class="btn btn-danger">Nuevo</a>
     este codigo lo agregamos al inicio, ya es por preferencia del formulario o estetica, ya que trabajamos en cascada,  este nos devuelve el formulario limpio para agregar un nuevo usuario
-
 
 16. En el archivo del Controller se crea el metodo de listar
     @GetMapping("/estudianteListar")
@@ -123,10 +122,9 @@ Pasos
 
     }
 
-
-20. Agregamos en estudiante Interface los nuevos metodos -public Estudiante consultar(Integer id);
+17. Agregamos en estudiante Interface los nuevos metodos -public Estudiante consultar(Integer id);
     -public void eliminar(Integer id);
-21. Vamos a estudiante servicio y le damos a la clase en el Controller para agregar los metodos que se construyo con anteriodad
+18. Vamos a estudiante servicio y le damos a la clase en el Controller para agregar los metodos que se construyo con anteriodad
 
     -En el metodo de consulta agregamos el  
     -@Transactional
@@ -136,7 +134,7 @@ Pasos
     -@Transactional
     -estudianteDAO.deleteById(id);
 
-22. En el Controller Se agregan los metodos de consultar y eliminar
+19. En el Controller Se agregan los metodos de consultar y eliminar
     Consultar
     -Les agregamos los @GetMapping("/conturtar/{id}") NOTA ESEGURARSE DE QUE EL ID VA EN {} LLAVES - En el metodo de consultar se le envia el siguiente parametro (@PathVariable(name = "id") Integer id, Model model) - Dentro del metodo se agrega
     -Instancia una la clase de Estudainte = se le envia la informacion la cual se agrega a la interface para asi compararla con la base de datos
@@ -165,7 +163,72 @@ Pasos
         -Se lleva la informacion de la ID a los campos del formulario donde se podra modificar la infomacion y guardar
             -return "estudianteInsertar";
 
-23. En el archivo de HTML de Listar se crea dentro de el campo de botnes se agrego el boton de eliminar y de modificar
+20. En el archivo de HTML de Listar se crea dentro de el campo de botnes se agrego el boton de eliminar y de modificar
     Se crea uun Link con forma de boton Eliminar -<a th:href="@{/eliminar/} + ${est.id}" class="btn btn-danger  btn-sm" onclick="return confirm('¿ Estas Seguro de Eliminar ?')">Eliminar</a>
 
     Se crea uun Link con forma de boton Modificar -<a th:href="@{/modificar/} + ${est.id}" class="btn btn-danger  btn-sm">Modificar</a>
+
+Tablas Relacionales BD
+
+1. Vamos al template y creamos un archivo html insertar
+   creamos lo necesario
+
+2. Creamos un archivo controller con el metodo insertar
+3. Creamos la clase producto con sus variables y gettes and setters
+4. Vamos a la clase que vamos a relacionar y agremos despues de las variables
+   -@OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   -Se tiene que crear despues
+   private List<Producto> productos;
+   -Nos paramos en el constructor de la clase y agremaos dentro una instancia de un arraylist
+   productos = new ArrayList<>();
+   -Debajo del contructor se cran los gett and setters de el array
+5. Vamos al contructor de la otra clase y agremos despues de los atributos los siguiente
+   @JsonIgnore
+   @ManyToOne(fetch = FetchType.LAZY)
+   -Creamos una instancia de la otra clase
+   private Categoria categoria;
+   -Generamos los Gett and Sett
+6. Creamos una interface con los metodos
+7. Creamos un archivo interface DAO
+8. Creamos otro archivo de SERVICIO
+   agregamos el metodo con su @Transactional y el
+   @Autowired
+   private ProductoDAO productoDAO;
+   @Autowired
+   private CategoriaDAO categoriaDAO;
+   Esta duplicado por la relacion que existe entre las dos tablas
+9. En el controller de la relacion agregamos de las dos clases
+   @Autowired
+   private ProductoInterface ProductoServicio;
+   @Autowired
+   private CategoriaInterface CategoriaServicio;
+   -Ademas creaos un nuevo metodo
+   @ModelAttribute("categoria")
+   public List<Categoria> datosCategoria(){
+   return CategoriaServicio.listado();
+   }
+   -Creamos todo lo que falta del metodo insetar
+   Producto producto = new Producto();
+   model.addAttribute("producto", producto);
+   model.addAttribute("mensaje", "Nuevo Producto");
+10. Agregamos al select y al option para mostrar la categorias en una lista desplegable
+    <select class="form-select" th:field="*{categoria}">
+    <option th:each="cat:${categoria}" th:value="${cat.id}" th:text="${cat.descripcion}"></option>
+    </select>
+11. agregamos el postmapping con el siguiente metodo
+    @PostMapping("/insertarProducto")
+    public String insertarProducto(@ModelAttribute(name = "producto") Producto producto,Model model,SessionStatus status){
+    ProductoServicio.guardarProducto(producto);
+    status.setComplete();
+    return "productoInsertar";
+    }
+12. Creamos un archivo html para listar
+13. Creamos el metodo para listar en producto inteface y lo agremasos en servicio
+14. Creamos un metodo en el controller 
+    @GetMapping("/productoListar")
+    public String productoListar(Model model) {
+        List<Producto> producto = ProductoServicio.listadoProducto();
+        model.addAttribute("producto", producto);
+        model.addAttribute("mensaje", "Listado Productos");
+        return "productoListar";
+    } 
