@@ -92,7 +92,7 @@ Pasos
 
         <form method="post" class="row g-3" th:action="@{/insertar}" th:object="${paciente}" >
 
-        Tambien recordar agregarle el th:field="*{}" a los inputs de los datos
+        Tambien recordar agregarle el th:field="*{}" a los inputs de los datos cuando se va a modificar 
 
 13. Se agrega al archivo de EstudianteInterface el public -List<Estudiante> listado(); Este tiene el listado de la base de datos con el nombre Estudiante
 
@@ -170,12 +170,13 @@ Pasos
 
 Tablas Relacionales BD
 
-1. Vamos al template y creamos un archivo html insertar
-   creamos lo necesario
+1. Vamos al template y creamos un archivo html insertar de la nueva tabla creamos lo necesario
 
-2. Creamos un archivo controller con el metodo insertar
+2. Creamos un archivo controller de la nueva tabla con el metodo insertar
+
 3. Creamos la clase producto con sus variables y gettes and setters
-4. Vamos a la clase que vamos a relacionar y agremos despues de las variables
+
+4. Vamos a la clase a la cual vamos a relacionar y agremos despues de las variables
    -@OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
    -Se tiene que crear despues
    private List<Producto> productos;
@@ -188,10 +189,10 @@ Tablas Relacionales BD
    -Creamos una instancia de la otra clase
    private Categoria categoria;
    -Generamos los Gett and Sett
-6. Creamos una interface con los metodos
+6. Creamos una interface con los metodos (archivo INTERFACE)
 7. Creamos un archivo interface DAO
 8. Creamos otro archivo de SERVICIO
-   agregamos el metodo con su @Transactional y el
+   -agregamos el metodo con su @Transactional y el
    @Autowired
    private ProductoDAO productoDAO;
    @Autowired
