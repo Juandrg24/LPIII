@@ -52,7 +52,7 @@ public class ProductoController {
         return "productoListar";
     }
 
-    @GetMapping("/consultar/id")
+    @GetMapping("/consultarProducto/{id}")
     public String consultar(@PathVariable(name="id") Integer id, Model model){
         Producto producto = ProductoServicio.consultarProducto(id);
         model.addAttribute("producto", producto);
@@ -60,18 +60,18 @@ public class ProductoController {
         return "redirect:/productoListar";
     }
 
-    @GetMapping("/eliminar/id")
+    @GetMapping("/eliminarProducto/{id}")
     public String eliminar(@PathVariable(name="id") Integer id, Model model){
         Producto producto = ProductoServicio.consultarProducto(id);
         ProductoServicio.eliminarProducto(id);
         return "redirect:/productoListar";
     }
-    @GetMapping("/consultar/id")
+    @GetMapping("/modificarProducto/{id}")
     public String modificar(@PathVariable(name="id") Integer id, Model model){
         Producto producto = ProductoServicio.consultarProducto(id);
         model.addAttribute("producto", producto);
         model.addAttribute("mensaje", "Consultar");
-        return "productoListar";
+        return "productoInsertar";
     }
 
 

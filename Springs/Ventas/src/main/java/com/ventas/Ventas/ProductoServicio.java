@@ -36,7 +36,7 @@ public class ProductoServicio implements ProductoInterface {
     @Override
     @Transactional
     public void eliminarProducto(Integer id) {
-        categoriaDAO.deleteById(id);
+        productoDAO.deleteById(id);
     }    
     
 }

@@ -16,12 +16,12 @@
                 <form  method="post" th:action="@{/insertarProducto}" th:object="${producto}" onsubmit="">
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripcion:</label>
-                        <input type="text" class="form-control" name="descripcion" id="descripcion"  maxlength="100">
+                        <input type="text" class="form-control" name="descripcion" id="descripcion" th:field="*{descripcion}" maxlength="100">
                         <small class="form-text text-danger" id="msgDescripcion"></small>
                     </div>
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio:</label>
-                        <input type="text" class="form-control" name="precio" id="precio"  maxlength="10">
+                        <input type="text" class="form-control" name="precio" id="precio" th:field="*{precio}" maxlength="10">
                         <small class="form-text text-danger" id="msgDescripcion"></small>
                     </div>
                     <div class="mb-3">
